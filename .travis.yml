@@ -5,4 +5,4 @@ before_install:
 before_script:
   - nuget restore PageLayout.sln
 after_script:
-- nunit-console PageLayoutServiceTests/bin/Debug/PageLayoutServiceTests.dll
+- nunit-console PageLayoutServiceTests/bin/Release/PageLayoutServiceTests.dll
