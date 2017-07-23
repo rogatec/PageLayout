@@ -1,7 +1,7 @@
 ﻿language: csharp
 solution: PageLayout.sln
 install:
-  - nuget restore Travis.sln
+  - nuget restore PageLayout.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release PageLayout.sln
