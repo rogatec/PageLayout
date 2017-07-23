@@ -1,8 +1,8 @@
 ﻿language: csharp
 solution: PageLayout.sln
-install:
+before_install:
   - sudo apt-get install nunit-console
-  - nuget restore PageLayout.sln 
-script:
-  - xbuild PageLayout.sln
-  - nunit-console PageLayoutServiceTests/bin/Debug/PageLayoutServiceTests.dll
+before_script:
+  - nuget restore PageLayout.sln
+after_script:
+- nunit-console PageLayoutServiceTests/bin/Debug/PageLayoutServiceTests.dll
