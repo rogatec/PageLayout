@@ -1,8 +1,8 @@
 ﻿language: csharp
 solution: PageLayout.sln
-before_install:
-  - sudo apt-get install nunit-console
-before_script:
-  - nuget restore PageLayout.sln
-after_script:
-- nunit-console PageLayoutServiceTests/bin/Release/PageLayoutServiceTests.dll
+install:
+  - nuget restore Travis.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release PageLayout.sln
+- mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./PageLayoutServiceTests/bin/Release/PageLayoutServiceTests.dll
