@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Views="clr-namespace:PageLayoutService.Views"
+        xmlns:views="clr-namespace:PageLayoutService.Views"
         mc:Ignorable="d"
         Title="Textumbruch"
         HorizontalAlignment="Center"
@@ -13,5 +13,5 @@
         SizeToContent="WidthAndHeight"
         MinWidth="600"
         MinHeight="500">
-    <Views:PageLayout/>
+    <views:PageLayout/>
 </Window>
