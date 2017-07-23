@@ -3,78 +3,55 @@ using PageLayoutService.ViewModels.Commands;
 using System.ComponentModel;
 using System.Windows.Input;
 
-namespace PageLayoutService.ViewModels
-{
-    public class MainViewModel : IMainViewModel, INotifyPropertyChanged
-    {
+namespace PageLayoutService.ViewModels {
+    public class MainViewModel : IMainViewModel, INotifyPropertyChanged {
         #region "Properties"
 
-        private IPageLayoutHandler pageLayoutHandler;
+        private readonly IPageLayoutHandler _pageLayoutHandler;
 
-        private string _Input;
+        private string _input;
 
-        public string Input
-        {
-            get { return _Input; }
-            set
-            {
-                _Input = value;
+        public string Input {
+            get => _input;
+            set {
+                _input = value;
                 RaisePropertyChanged("Input");
             }
         }
 
-        private int _MaxLineLength;
+        private int _maxLineLength;
 
-        public int MaxLineLength
-        {
-            get { return _MaxLineLength; }
-            set
-            {
-                _MaxLineLength = value;
+        public int MaxLineLength {
+            get => _maxLineLength;
+            set {
+                _maxLineLength = value;
                 RaisePropertyChanged("MaxLineLength");
             }
         }
 
-        public string ResultText { get { return pageLayoutHandler.ResultText; } }
+        public string ResultText => _pageLayoutHandler.ResultText;
 
-        private ICommand _Transform;
-        public ICommand Transform
-        {
-            get
-            {
-                if (_Transform == null)
-                {
-                    _Transform = new TransformCommand<IPageLayoutHandler>(TransformExecute);
-                }
+        private ICommand _transform;
 
-                return _Transform;
-            }
-        }
+        public ICommand Transform => _transform ??
+                                     (_transform = new TransformCommand<IPageLayoutHandler>(TransformExecute));
 
         #endregion "Properties"
 
         #region "Methods"
 
-        public MainViewModel()
-        {
-            pageLayoutHandler = new PageLayoutHandler();
+        public MainViewModel() {
+            _pageLayoutHandler = new PageLayoutHandler();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void RaisePropertyChanged(string property)
-        {
+        private void RaisePropertyChanged(string property) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        public IPageLayoutHandler GetPageLayoutHandler()
-        {
-            return pageLayoutHandler;
-        }
-
-        private void TransformExecute(object parameter)
-        {
-            pageLayoutHandler.Umbrechen(Input, MaxLineLength);
+        private void TransformExecute(object parameter) {
+            _pageLayoutHandler.Umbrechen(Input, MaxLineLength);
             RaisePropertyChanged("ResultText");
         }
 

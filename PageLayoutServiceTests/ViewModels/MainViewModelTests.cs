@@ -1,39 +1,35 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
+using PageLayoutService.ViewModels;
 
-namespace PageLayoutService.ViewModels.Tests
-{
-    [TestFixture()]
-    public class MainViewModelTests
-    {
-        private MainViewModel viewModel;
-        private List<string> PropertiesChanged;
+namespace PageLayoutServiceTests.ViewModels {
+    [TestFixture]
+    public class MainViewModelTests {
+        private MainViewModel _viewModel;
+        private List<string> _propertiesChanged;
 
         [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            viewModel = new MainViewModel();
+        public void OneTimeSetUp() {
+            _viewModel = new MainViewModel();
 
-            PropertiesChanged = new List<string>();
-            viewModel.PropertyChanged += (sender, e) => PropertiesChanged.Add(e.PropertyName);
-        }
-
-        [Test()]
-        public void InputProperty_HasChanged_NewInputValue()
-        {
-            viewModel.Input = "Test";
-
-            Assert.Contains("Input", PropertiesChanged);
-            Assert.AreEqual("Test", viewModel.Input);
+            _propertiesChanged = new List<string>();
+            _viewModel.PropertyChanged += (sender, e) => _propertiesChanged.Add(e.PropertyName);
         }
 
         [Test]
-        public void MaxLineLenghProperty_HasChanged_NewMaxLineValue()
-        {
-            viewModel.MaxLineLength = 1;
+        public void InputProperty_HasChanged_NewInputValue() {
+            _viewModel.Input = "Test";
 
-            Assert.Contains("MaxLineLength", PropertiesChanged);
-            Assert.AreEqual(1, viewModel.MaxLineLength);
+            Assert.Contains("Input", _propertiesChanged);
+            Assert.That(_viewModel.Input, Is.EqualTo("Test"));
+        }
+
+        [Test]
+        public void MaxLineLenghProperty_HasChanged_NewMaxLineValue() {
+            _viewModel.MaxLineLength = 1;
+
+            Assert.Contains("MaxLineLength", _propertiesChanged);
+            Assert.That(_viewModel.MaxLineLength, Is.EqualTo(1));
         }
 
         // TODO: ResultText testing??
