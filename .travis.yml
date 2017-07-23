@@ -5,4 +5,4 @@ install:
   - nuget restore PageLayout.sln 
 script:
   - xbuild PageLayout.sln
-  - nunit-console ./PageLayoutServiceTests/bin/Debug/PageLayoutServiceTests.dll
+  - nunit-console PageLayoutServiceTests/bin/Debug/PageLayoutServiceTests.dll
