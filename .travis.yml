@@ -1,6 +1,0 @@
-﻿language: csharp
-solution: PageLayout.sln
-script:
-  - sudo apt-get install mono-devel mono-gmcs nunit-console
-  - xbuild PageLayout.sln
-  - nunit-console PageLayoutServiceTests/bin/Release/PageLayoutServiceTests.dll
