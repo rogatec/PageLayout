@@ -13,7 +13,7 @@ build:
 test_script:
 - ps: >-
     .\packages\OpenCover.*\tools\OpenCover.Console.exe -register:user -target:nunit-console.exe "-targetargs:""PageLayoutServiceTests\bin\$env:CONFIGURATION\PageLayoutServiceTests.dll"" /noshadow" -filter:"+[PageLayout*]*" -output:opencoverCoverage.xml
-    $coveralls = (Resolve-Path "packages/coveralls.net.*/tools/csmacnz.coveralls.exe").ToString()
+    -ArgumentList $coveralls = (Resolve-Path "packages/coveralls.net.*/tools/csmacnz.coveralls.exe").ToString()
     
     $env:APPVEYOR_BUILD_NUMBER
     
