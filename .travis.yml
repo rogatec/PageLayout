@@ -1,8 +1,6 @@
 ﻿language: csharp
 solution: PageLayout.sln
-install:
-  - nuget restore PageLayout.sln
-  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
-  - xbuild /p:Configuration=Release PageLayout.sln
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./PageLayoutServiceTests/bin/Release/PageLayoutServiceTests.dll
+  - sudo apt-get install mono-devel mono-gmcs nunit-console
+  - xbuild PageLayout.sln
+  - nunit-console PageLayoutServiceTests/bin/Release/PageLayoutServiceTests.dll
