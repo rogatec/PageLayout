@@ -1,12 +1,7 @@
 version: 1.0.{build}
 
-configuration: Release
-assembly_info:
-  patch: true
-  file: '**\AssemblyInfo.*'
-  assembly_version: '{version}'
-  assembly_file_version: '{version}'
-  assembly_informational_version: '{version}'
+configuration: Debug
+image: Visual Studio 2017
 environment:
   COVERALLS_REPO_TOKEN:
     secure: gjE9iuhHz/Wb2M5QbVBM8gBDqrOxbml+zD+HUXdSf95kFkSxXV+Lu9H5rnILhoG/
@@ -23,4 +18,3 @@ test_script:
     $env:APPVEYOR_BUILD_NUMBER
     
     & $coveralls --opencover -i opencoverCoverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --useRelativePaths --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_BUILD_NUMBER --serviceName appveyor
-    
